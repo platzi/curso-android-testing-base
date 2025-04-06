@@ -7,6 +7,7 @@ import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
+import com.google.common.truth.Truth
 import com.juandgaines.todoapp.MainActivity
 import com.juandgaines.todoapp.data.TaskDao
 import com.juandgaines.todoapp.data.TaskEntity
@@ -106,7 +107,7 @@ class HomeScreenTest {
         // And: Verify task was saved in database
         runBlocking {
             val tasks = taskDao.getAllTasks().first()
-            assert(tasks.any { it.title == "New Test Task" })
+            Truth.assertThat(tasks.any{ it.title == "New Test Task" }).isTrue()
         }
     }
 }
